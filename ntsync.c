@@ -11,7 +11,7 @@
 #include <fcntl.h>
 #include <time.h>
 #include <pthread.h>
-#include <linux/ntsync.h>
+#include <sys/dev/ntsync/ntsync.h>
 #include "kselftest_harness.h"
 
 static int read_sem_state(int sem, __u32 *count, __u32 *max)
