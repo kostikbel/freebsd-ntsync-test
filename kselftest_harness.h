@@ -46,6 +46,7 @@ gettid(void)
 struct test_ctr_tag {
 	TAILQ_ENTRY(test_ctr_tag) next;
 	void (*test_fun)(void);
+	const char *test_name;
 };
 
 TAILQ_HEAD(tests_tag, test_ctr_tag);
@@ -59,6 +60,7 @@ name ## _ctr(void)							\
 {									\
 	static struct test_ctr_tag tt = {				\
 		.test_fun = name,					\
+		.test_name = #name,					\
 	};								\
 									\
 	TAILQ_INSERT_HEAD(&tests, &tt, next);				\
@@ -74,6 +76,7 @@ main(void)								\
 	struct test_ctr_tag *t;						\
 									\
 	TAILQ_FOREACH(t, &tests, next) {				\
+		printf("%s\n", t->test_name);				\
 		t->test_fun();						\
 	}								\
 }
