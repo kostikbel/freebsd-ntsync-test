@@ -50,7 +50,7 @@ struct test_ctr_tag {
 };
 
 TAILQ_HEAD(tests_tag, test_ctr_tag);
-struct tests_tag tests;
+struct tests_tag tests = TAILQ_HEAD_INITIALIZER(tests);
 
 #define	TEST(name)							\
 static void name ## _ctr(void) __attribute((constructor));		\
