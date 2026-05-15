@@ -63,7 +63,7 @@ name ## _ctr(void)							\
 		.test_name = #name,					\
 	};								\
 									\
-	TAILQ_INSERT_HEAD(&tests, &tt, next);				\
+	TAILQ_INSERT_TAIL(&tests, &tt, next);				\
 }									\
 static									\
 void name(void)
