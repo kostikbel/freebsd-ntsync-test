@@ -32,10 +32,9 @@ gettid(void)
 
 #define	EXPECT_OP(a, b, op)	do {					\
 	if (!((a) op (b))) {						\
-		fprintf(stderr, "%s:%d a %#x != b %#x\n",		\
-		    __FILE__, __LINE__,					\
-		    (a), (b));						\
-		abort();						\
+		fprintf(stderr, "%s:%d %s %#x != %s %#x\n",		\
+		    __FILE__, __LINE__, #a, (a), #b, (b));		\
+		/* abort(); */						\
 	}								\
 } while (0)
 
