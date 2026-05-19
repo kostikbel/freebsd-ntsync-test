@@ -14,21 +14,27 @@
 #include <sys/queue.h>
 #include <errno.h>
 #include <pthread.h>
+#ifdef __FreeBSD__
 #include <pthread_np.h>
+#endif
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
+#ifndef __linux__
 typedef	uint32_t __u32;
 typedef	uint64_t __u64;
+#endif
 
+#ifdef __FreeBSD__
 static inline int
 gettid(void)
 {
 	return (pthread_getthreadid_np());
 }
+#endif
 
 #define	EXPECT_OP(a, b, op)	do {					\
 	if (!((a) op (b))) {						\

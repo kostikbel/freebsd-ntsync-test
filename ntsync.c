@@ -11,7 +11,11 @@
 #include <fcntl.h>
 #include <time.h>
 #include <pthread.h>
+#ifdef __FreeBSD__
 #include <sys/dev/ntsync/ntsync.h>
+#elif defined __linux__
+#include <linux/ntsync.h>
+#endif
 #include "kselftest_harness.h"
 
 static int read_sem_state(int sem, __u32 *count, __u32 *max)
